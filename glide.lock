@@ -1,0 +1,8 @@
+hash: 4419c4d0bc2d6790fe54da3163b837bd3d140cb3b96eb8fe2a79ed013e5e7737
+updated: 2017-12-28T23:39:36.088166021-05:00
+imports:
+- name: github.com/ngpitt/blinkt
+  version: 86a2ec712c099dc1d9cb67566a853855687880f8
+- name: github.com/ngpitt/gpio
+  version: 064946d06d49267d434f578c14e232689a817401
+testImports: []

@@ -1,0 +1,4 @@
+package: github.com/ngpitt/blinkt-animation-controller
+import:
+- package: github.com/ngpitt/blinkt
+  version: master
