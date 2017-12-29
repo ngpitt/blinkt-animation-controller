@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: blinkt-animation-controller-server
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blinkt-animation-controller-server
+  template:
+    metadata:
+      labels:
+        app: blinkt-animation-controller-server
+    spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"
+      nodeSelector:
+        blinktServer: "true"
+      containers:
+      - name: blinkt-animation-controller-server
+        image: ngpitt/blinkt-animation-controller-server:v1
+        args:
+        - -brightness
+        - "0.25"
+        - -listen
+        - ":8888"
+        - -config
+        - "[{\"id\":\"node1\",\"leds\":{\"0\":\"000000\",\"1\":\"000000\",\"2\":\"000000\",\"3\":\"000000\",\"4\":\"000000\",\"5\":\"000000\",\"6\":\"000000\",\"7\":\"000000\"},\"delay\":0},{\"id\":\"node2\",\"leds\":{\"0\":\"000000\",\"1\":\"000000\",\"2\":\"000000\",\"3\":\"000000\",\"4\":\"000000\",\"5\":\"000000\",\"6\":\"000000\",\"7\":\"000000\"},\"delay\":0},{\"id\":\"node3\",\"leds\":{\"0\":\"000000\",\"1\":\"000000\",\"2\":\"000000\",\"3\":\"000000\",\"4\":\"000000\",\"5\":\"000000\",\"6\":\"000000\",\"7\":\"000000\"},\"delay\":0},{\"id\":\"node4\",\"leds\":{\"0\":\"000000\",\"1\":\"000000\",\"2\":\"000000\",\"3\":\"000000\",\"4\":\"000000\",\"5\":\"000000\",\"6\":\"000000\",\"7\":\"000000\"},\"delay\":0},{\"id\":\"node5\",\"leds\":{\"0\":\"000000\",\"1\":\"000000\",\"2\":\"000000\",\"3\":\"000000\",\"4\":\"000000\",\"5\":\"000000\",\"6\":\"000000\",\"7\":\"000000\"},\"delay\":1000}]"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: blinkt-animation-controller-server
+  namespace: kube-system
+spec:
+  selector:
+    app: blinkt-animation-controller-server
+  ports:
+  - port: 8888

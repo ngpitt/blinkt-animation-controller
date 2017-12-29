@@ -13,7 +13,7 @@ import (
 func main() {
 	server := flag.String("server", "", "server")
 	flag.Parse()
-	id := os.Getenv("ID")
+	id := os.Getenv("NODE_NAME")
 	log.Printf("Connecting to \"%s\"...\n", *server)
 	conn, err := net.Dial("tcp", *server)
 	if err != nil {
