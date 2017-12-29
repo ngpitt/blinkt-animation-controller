@@ -19,8 +19,7 @@ spec:
       - name: blinkt-animation-controller-client
         image: ngpitt/blinkt-animation-controller-client:v1
         args:
-        - -server
-        - "blinkt-animation-controller-server.kube-system:8888"
+        - -server=blinkt-animation-controller-server.kube-system:8888
         env:
         - name: NODE_NAME
           valueFrom:
